@@ -9,6 +9,7 @@ Summary:        Tesla : Concurrent Local Repository
 License:        EPL
 URL:            https://github.com/tesla/%{name}
 Source0:        https://github.com/tesla/%{name}/archive/%{commit}/%{name}-%{version}-%{shortcommit}.tar.gz
+Source1:        eclipse-1.0.txt
 BuildArch:      noarch
 
 BuildRequires: mvn(edu.umd.cs:multithreadedtc)
@@ -33,6 +34,7 @@ API documentation for %{name}.
 
 %prep
 %setup -q -n %{name}-%{commit}
+cp %{SOURCE1} .
 
 # Doesn't really need the parent and it's not packaged
 %pom_remove_parent
@@ -52,8 +54,10 @@ API documentation for %{name}.
 
 %files -f .mfiles
 %dir %{_javadir}/%{name}
+%doc eclipse-1.0.txt
 
 %files javadoc -f .mfiles-javadoc
+%doc eclipse-1.0.txt
 
 %changelog
 * Sat Nov 23 2013 Gerard Ryan <galileo@fedoraproject.org> - 0.0.3-1
